@@ -1,0 +1,2872 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Tutela Ambientale - Educazione Civica</title>
+  <meta name="description" content="Progetto di educazione civica sulla tutela ambientale. Realizzato dagli studenti delle classi quinte A.S. 2025-2026">
+  <meta name="author" content="Ares Spina, Christian Colatruglio, Andrea Cervellino, Davide Della Ventura">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* CSS Variables - Environmental Theme */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 210 29% 24%;
+      --card: 0 0% 100%;
+      --card-foreground: 210 29% 24%;
+      --primary: 145 63% 42%;
+      --primary-foreground: 0 0% 100%;
+      --primary-light: 145 63% 95%;
+      --secondary: 204 70% 53%;
+      --secondary-foreground: 0 0% 100%;
+      --muted: 210 20% 96%;
+      --muted-foreground: 210 15% 45%;
+      --accent: 145 63% 95%;
+      --accent-foreground: 145 63% 32%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 0 0% 100%;
+      --border: 210 20% 90%;
+      --radius: 0.75rem;
+      --earth: 35 50% 45%;
+      --water: 200 80% 50%;
+      --energy: 45 90% 55%;
+      --nature: 120 40% 45%;
+      --font-heading: 'Poppins', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --gradient-nature: linear-gradient(135deg, hsl(145 63% 42%) 0%, hsl(165 60% 40%) 100%);
+      --gradient-ocean: linear-gradient(135deg, hsl(200 80% 50%) 0%, hsl(220 70% 55%) 100%);
+      --gradient-earth: linear-gradient(135deg, hsl(35 50% 45%) 0%, hsl(25 55% 40%) 100%);
+      --gradient-subtle: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(0 0% 100%) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Utility Classes */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .page-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: hsl(var(--foreground));
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: hsl(var(--muted-foreground));
+      margin-bottom: 2rem;
+    }
+
+    .text-gradient {
+      background: var(--gradient-nature);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .bg-gradient-nature {
+      background: var(--gradient-nature);
+    }
+
+    .bg-gradient-subtle {
+      background: var(--gradient-subtle);
+    }
+
+    /* Cards */
+    .info-card {
+      background: hsl(var(--card));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid hsl(var(--border));
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+    }
+
+    .info-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      border-color: hsl(var(--primary) / 0.2);
+    }
+
+    .stat-card {
+      background: hsl(var(--primary-light));
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: hsl(var(--primary));
+      font-family: var(--font-heading);
+    }
+
+    .stat-label {
+      font-weight: 600;
+      color: hsl(var(--foreground));
+      margin-top: 0.25rem;
+    }
+
+    .stat-description {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+      margin-top: 0.25rem;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: hsl(var(--background) / 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1.125rem;
+    }
+
+    .navbar-brand-icon {
+      width: 2rem;
+      height: 2rem;
+      background: var(--gradient-nature);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-link {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      color: hsl(var(--muted-foreground));
+      font-weight: 500;
+      transition: all 0.2s;
+      font-size: 0.875rem;
+    }
+
+    .nav-link:hover {
+      color: hsl(var(--foreground));
+      background: hsl(var(--muted));
+    }
+
+    .nav-link.active {
+      color: hsl(var(--primary));
+      background: hsl(var(--primary) / 0.1);
+    }
+
+    /* Mobile Navigation */
+    .mobile-nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: hsl(var(--background));
+        padding: 1rem;
+        border-bottom: 1px solid hsl(var(--border));
+        flex-direction: column;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-nav-toggle {
+        display: block;
+      }
+    }
+
+    /* Page Header */
+    .page-header {
+      padding: 4rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-subtle);
+      z-index: -1;
+    }
+
+    .page-header-icon {
+      width: 4rem;
+      height: 4rem;
+      background: hsl(var(--primary) / 0.1);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: hsl(var(--primary));
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .page-header p {
+      font-size: 1.25rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-3, .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+
+      .page-header h1 {
+        font-size: 1.75rem;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, hsl(145 63% 95%) 0%, hsl(var(--background)) 100%);
+    }
+
+    .hero-content {
+      text-align: center;
+      padding: 2rem;
+      max-width: 900px;
+      z-index: 10;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: hsl(var(--primary) / 0.1);
+      color: hsl(var(--primary));
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: hsl(var(--muted-foreground));
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-family: var(--font-heading);
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-nature);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px -10px hsl(var(--primary) / 0.5);
+    }
+
+    .btn-secondary {
+      background: hsl(var(--background) / 0.5);
+      color: hsl(var(--foreground));
+      border: 1px solid hsl(var(--border));
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: hsl(var(--muted));
+    }
+
+    /* Topics Grid */
+    .topics-section {
+      padding: 5rem 0;
+      background: var(--gradient-subtle);
+    }
+
+    .topic-card {
+      display: block;
+      padding: 1.5rem;
+      background: hsl(var(--card));
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      transition: all 0.3s;
+      height: 100%;
+    }
+
+    .topic-card:hover {
+      border-color: hsl(var(--primary) / 0.3);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .topic-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .topic-card:hover .topic-icon {
+      transform: scale(1.1);
+    }
+
+    .topic-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .topic-card:hover h3 {
+      color: hsl(var(--primary));
+    }
+
+    .topic-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 0;
+    }
+
+    .cta-box {
+      padding: 3rem;
+      background: var(--gradient-nature);
+      border-radius: 1rem;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-box h2 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-box p {
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-box .btn {
+      background: white;
+      color: hsl(var(--foreground));
+    }
+
+    .cta-box .btn:hover {
+      background: hsl(var(--muted));
+    }
+
+    /* Content Sections */
+    .content-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .content-section:last-child {
+      border-bottom: none;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: hsl(var(--border));
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(odd) {
+      justify-content: flex-start;
+      padding-right: 55%;
+    }
+
+    .timeline-item:nth-child(even) {
+      justify-content: flex-end;
+      padding-left: 55%;
+    }
+
+    .timeline-content {
+      background: hsl(var(--card));
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      width: 100%;
+    }
+
+    .timeline-year {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: hsl(var(--primary) / 0.1);
+      color: hsl(var(--primary));
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      width: 1rem;
+      height: 1rem;
+      background: hsl(var(--primary));
+      border-radius: 50%;
+      transform: translateX(-50%);
+      border: 4px solid hsl(var(--background));
+    }
+
+    @media (max-width: 640px) {
+      .timeline::before {
+        left: 1rem;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        padding-left: 3rem;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+
+      .timeline-dot {
+        left: 1rem;
+      }
+    }
+
+    /* Lists */
+    .feature-list {
+      list-style: none;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .feature-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: hsl(var(--primary));
+      border-radius: 50%;
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .data-table th {
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    /* Key Takeaways */
+    .takeaways {
+      background: hsl(var(--accent));
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .takeaways h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: hsl(var(--accent-foreground));
+    }
+
+    .takeaways ul {
+      list-style: none;
+    }
+
+    .takeaways li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .takeaways .check-icon {
+      color: hsl(var(--primary));
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+    }
+
+    /* Page Navigation */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid hsl(var(--border));
+    }
+
+    .page-nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: hsl(var(--muted));
+      border-radius: var(--radius);
+      color: hsl(var(--foreground));
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .page-nav-btn:hover {
+      background: hsl(var(--primary));
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      background: hsl(var(--muted));
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .footer-brand-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--gradient-nature);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .footer-text {
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+    }
+
+    /* Special Boxes */
+    .highlight-box {
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid;
+    }
+
+    .highlight-box.primary {
+      background: hsl(var(--primary) / 0.05);
+      border-color: hsl(var(--primary) / 0.2);
+    }
+
+    .highlight-box.destructive {
+      background: hsl(var(--destructive) / 0.05);
+      border-color: hsl(var(--destructive) / 0.2);
+    }
+
+    .highlight-box.secondary {
+      background: hsl(var(--secondary) / 0.05);
+      border-color: hsl(var(--secondary) / 0.2);
+    }
+
+    .highlight-box.muted {
+      background: hsl(var(--muted) / 0.5);
+      border-color: hsl(var(--border));
+    }
+
+    /* Hierarchy Pyramid */
+    .hierarchy {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hierarchy-level {
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .hierarchy-level:first-child {
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .hierarchy-level:last-child {
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    .hierarchy-level span:last-child {
+      font-size: 0.875rem;
+      opacity: 0.9;
+    }
+
+    /* Credits Section */
+    .credits-section {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 0;
+    }
+
+    .credits-content {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .credits-logo {
+      width: 5rem;
+      height: 5rem;
+      background: var(--gradient-nature);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: white;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 500px;
+      margin: 2rem auto;
+    }
+
+    .team-card {
+      padding: 1.5rem;
+      background: hsl(var(--card));
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      transition: all 0.3s;
+    }
+
+    .team-card:hover {
+      border-color: hsl(var(--primary) / 0.2);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    .team-icon {
+      width: 3rem;
+      height: 3rem;
+      background: hsl(var(--primary) / 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+      color: hsl(var(--primary));
+    }
+
+    .team-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .team-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .project-info {
+      padding: 2rem;
+      background: hsl(var(--muted) / 0.5);
+      border-radius: var(--radius);
+      border: 1px solid hsl(var(--border));
+      margin-top: 2rem;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+    }
+
+    .project-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-meta {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+
+    /* Scroll margin for sections */
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    /* Icon containers */
+    .icon-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Water products grid */
+    .water-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1rem;
+    }
+
+    .water-card {
+      padding: 1rem;
+      background: hsl(var(--water) / 0.05);
+      border: 1px solid hsl(var(--water) / 0.2);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .water-card .emoji {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .water-card .amount {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: hsl(var(--water));
+      font-size: 1.125rem;
+    }
+
+    .water-card .product {
+      font-size: 0.75rem;
+      color: hsl(var(--muted-foreground));
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .water-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .water-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* SDG Grid */
+    .sdg-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+
+    .sdg-item {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+
+    .sdg-item.highlight {
+      background: hsl(var(--primary));
+      color: white;
+    }
+
+    .sdg-item.muted {
+      background: hsl(var(--muted));
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Recycling grid */
+    .recycle-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .recycle-card {
+      padding: 1.5rem;
+      background: hsl(var(--primary) / 0.05);
+      border: 1px solid hsl(var(--primary) / 0.1);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .recycle-card .emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .recycle-card h4 {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .recycle-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    @media (max-width: 768px) {
+      .recycle-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Circular vs Linear */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .comparison-box {
+      padding: 1.5rem;
+      border-radius: var(--radius);
+    }
+
+    .comparison-box.linear {
+      background: hsl(var(--destructive) / 0.05);
+      border: 1px solid hsl(var(--destructive) / 0.2);
+    }
+
+    .comparison-box.circular {
+      background: hsl(var(--primary) / 0.05);
+      border: 1px solid hsl(var(--primary) / 0.2);
+    }
+
+    .comparison-box h3 {
+      margin-bottom: 1rem;
+    }
+
+    .comparison-box.linear h3 {
+      color: hsl(var(--destructive));
+    }
+
+    .comparison-box.circular h3 {
+      color: hsl(var(--primary));
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .flow-step {
+      padding: 0.25rem 0.75rem;
+      background: hsl(var(--destructive) / 0.1);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+    }
+
+    /* Tips grid */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      background: hsl(var(--muted) / 0.5);
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+    }
+
+    .tip-item .tip-text {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tip-item .tip-icon {
+      width: 2rem;
+      height: 2rem;
+      background: hsl(var(--water) / 0.1);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: hsl(var(--water));
+    }
+
+    .tip-item .saving {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: hsl(var(--primary));
+      background: hsl(var(--primary) / 0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+    }
+
+    @media (max-width: 768px) {
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Strategies grid */
+    .strategies-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .strategy-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      background: hsl(var(--muted) / 0.5);
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+    }
+
+    .strategy-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: hsl(var(--primary) / 0.1);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: hsl(var(--primary));
+      flex-shrink: 0;
+    }
+
+    .strategy-card h4 {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .strategy-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    @media (max-width: 768px) {
+      .strategies-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Consequence cards */
+    .consequence-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1rem;
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+    }
+
+    .consequence-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    .consequence-card.critical::after {
+      background: hsl(var(--destructive));
+    }
+
+    .consequence-card.high::after {
+      background: hsl(var(--energy));
+    }
+
+    .consequence-card.moderate::after {
+      background: hsl(var(--muted-foreground));
+    }
+
+    .consequence-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .consequence-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .consequence-icon.critical {
+      background: hsl(var(--destructive) / 0.1);
+      color: hsl(var(--destructive));
+    }
+
+    .consequence-icon.high {
+      background: hsl(var(--energy) / 0.1);
+      color: hsl(var(--energy));
+    }
+
+    .consequence-icon.moderate {
+      background: hsl(var(--muted));
+      color: hsl(var(--muted-foreground));
+    }
+
+    .consequence-card h4 {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .consequence-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Goals grid */
+    .goals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .goal-card {
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid;
+      transition: all 0.3s;
+    }
+
+    .goal-card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    .goal-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .goal-number {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .goal-number span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+    }
+
+    .goal-card h4 {
+      font-weight: 600;
+      color: hsl(var(--foreground));
+      margin-bottom: 0.5rem;
+    }
+
+    .goal-card p {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    @media (max-width: 768px) {
+      .goals-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Energy cards */
+    .energy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .energy-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: hsl(var(--card));
+      border: 1px solid hsl(var(--border));
+      border-radius: var(--radius);
+    }
+
+    .energy-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .energy-card h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .energy-card p {
+      color: hsl(var(--muted-foreground));
+    }
+
+    @media (max-width: 768px) {
+      .energy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Job stats */
+    .job-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .job-stat {
+      text-align: center;
+      padding: 1rem;
+      background: hsl(var(--background));
+      border-radius: var(--radius);
+    }
+
+    .job-stat .number {
+      font-size: 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+    }
+
+    .job-stat .label {
+      font-size: 0.75rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    @media (max-width: 640px) {
+      .job-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#home" class="navbar-brand">
+        <div class="navbar-brand-icon">
+          <i data-lucide="leaf" style="width: 1.25rem; height: 1.25rem;"></i>
+        </div>
+        <span>La Tutela Ambientale</span>
+      </a>
+      
+      <button class="mobile-nav-toggle" onclick="toggleNav()">
+        <i data-lucide="menu" style="width: 1.5rem; height: 1.5rem;"></i>
+      </button>
+      
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#antropocene" class="nav-link">Antropocene</a>
+        <a href="#crisi-climatica" class="nav-link">Crisi Climatica</a>
+        <a href="#agenda-2030" class="nav-link">Agenda 2030</a>
+        <a href="#risorse-energetiche" class="nav-link">Risorse Energetiche</a>
+        <a href="#acqua" class="nav-link">Acqua</a>
+        <a href="#rifiuti" class="nav-link">Rifiuti</a>
+        <a href="#economia-circolare" class="nav-link">Economia Circolare</a>
+        <a href="#crediti" class="nav-link">Crediti</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">Educazione Civica • Classi Quinte • A.S. 2025-2026</span>
+      <h1>La Tutela <span class="text-gradient">Ambientale</span></h1>
+      <p>Un percorso educativo per comprendere le sfide ambientali del nostro tempo e scoprire come ciascuno di noi può contribuire a un futuro sostenibile.</p>
+      <div class="hero-buttons">
+        <a href="#antropocene" class="btn btn-primary">
+          Inizia il Percorso
+          <i data-lucide="arrow-right" style="width: 1.25rem; height: 1.25rem;"></i>
+        </a>
+        <a href="#crediti" class="btn btn-secondary">Chi Siamo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics Grid -->
+  <section class="topics-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 class="section-title">Esplora i Temi</h2>
+        <p class="section-subtitle">Sette capitoli interconnessi per comprendere la complessità delle sfide ambientali e le soluzioni possibili.</p>
+      </div>
+      
+      <div class="grid-3">
+        <a href="#antropocene" class="topic-card">
+          <div class="topic-icon" style="background: hsl(35 50% 45% / 0.1); color: hsl(35 50% 45%);">
+            <i data-lucide="globe" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>L'Antropocene</h3>
+          <p>L'epoca geologica dove l'impatto umano è la forza dominante nel modificare il pianeta.</p>
+        </a>
+        
+        <a href="#crisi-climatica" class="topic-card">
+          <div class="topic-icon" style="background: hsl(0 84% 60% / 0.1); color: hsl(0 84% 60%);">
+            <i data-lucide="thermometer" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>Crisi Climatica</h3>
+          <p>Cause e conseguenze del cambiamento climatico causato dalle attività umane.</p>
+        </a>
+        
+        <a href="#agenda-2030" class="topic-card">
+          <div class="topic-icon" style="background: hsl(204 70% 53% / 0.1); color: hsl(204 70% 53%);">
+            <i data-lucide="target" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>Agenda 2030</h3>
+          <p>I 17 obiettivi ONU per garantire un futuro sostenibile al pianeta.</p>
+        </a>
+        
+        <a href="#risorse-energetiche" class="topic-card">
+          <div class="topic-icon" style="background: hsl(45 90% 55% / 0.1); color: hsl(45 90% 55%);">
+            <i data-lucide="zap" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>Risorse Energetiche</h3>
+          <p>Confronto tra energie rinnovabili e non rinnovabili per un futuro pulito.</p>
+        </a>
+        
+        <a href="#acqua" class="topic-card">
+          <div class="topic-icon" style="background: hsl(200 80% 50% / 0.1); color: hsl(200 80% 50%);">
+            <i data-lucide="droplets" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>L'Acqua</h3>
+          <p>Gestione sostenibile della risorsa più preziosa del pianeta.</p>
+        </a>
+        
+        <a href="#rifiuti" class="topic-card">
+          <div class="topic-icon" style="background: hsl(var(--muted-foreground) / 0.1); color: hsl(var(--muted-foreground));">
+            <i data-lucide="trash-2" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>I Rifiuti</h3>
+          <p>Il problema dello smaltimento e l'impatto devastante della plastica.</p>
+        </a>
+        
+        <a href="#economia-circolare" class="topic-card">
+          <div class="topic-icon" style="background: hsl(var(--primary) / 0.1); color: hsl(var(--primary));">
+            <i data-lucide="refresh-ccw" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3>Economia Circolare</h3>
+          <p>Dal modello lineare al circolare per un'economia sostenibile.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Il futuro del pianeta è nelle nostre mani</h2>
+        <p>Ogni azione conta. Scopri come le tue scelte quotidiane possono fare la differenza per l'ambiente.</p>
+        <a href="#antropocene" class="btn">
+          Comincia ad Esplorare
+          <i data-lucide="arrow-right" style="width: 1.25rem; height: 1.25rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANTROPOCENE -->
+  <section id="antropocene" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="globe" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>L'Antropocene</h1>
+      <p>L'epoca geologica dove l'impatto delle attività umane è la forza dominante nel modificare il pianeta Terra</p>
+    </div>
+    
+    <div class="page-container">
+      <!-- Introduction -->
+      <div style="margin-bottom: 3rem;">
+        <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8;">
+          L'<strong style="color: hsl(var(--foreground));">Antropocene</strong> rappresenta l'epoca geologica attuale dove l'impatto delle attività umane è diventato la forza dominante nel modificare il pianeta Terra. Questo concetto rivoluzionario illustra come l'umanità sia diventata una <em>"forza geologica"</em> che altera la natura stessa del pianeta, lasciando tracce che saranno visibili per milioni di anni.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <h2 class="section-title">Timeline Geologica</h2>
+      <p class="section-subtitle">L'evoluzione della concentrazione di CO₂ atmosferica dal 1850 ad oggi</p>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-year">1850</span>
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Inizio dell'era industriale</h3>
+            <p style="color: hsl(var(--muted-foreground));">CO₂ atmosferica: <strong style="color: hsl(var(--foreground));">280 ppm</strong></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-year">1950</span>
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Grande Accelerazione</h3>
+            <p style="color: hsl(var(--muted-foreground));">CO₂ atmosferica: <strong style="color: hsl(var(--foreground));">310 ppm</strong></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-year">2000</span>
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Riconoscimento scientifico</h3>
+            <p style="color: hsl(var(--muted-foreground));">CO₂ atmosferica: <strong style="color: hsl(var(--foreground));">370 ppm</strong></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-year">Oggi</span>
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Epoca attuale</h3>
+            <p style="color: hsl(var(--muted-foreground));">CO₂ atmosferica: <strong style="color: hsl(var(--foreground));">420+ ppm</strong></p>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid-4" style="margin: 3rem 0;">
+        <div class="stat-card">
+          <div class="stat-value">+50%</div>
+          <div class="stat-label">Aumento CO₂</div>
+          <div class="stat-description">Dal 1850 ad oggi</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">0.6-0.9°C</div>
+          <div class="stat-label">Aumento Temperatura</div>
+          <div class="stat-description">Media globale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">420+</div>
+          <div class="stat-label">ppm di CO₂</div>
+          <div class="stat-description">Livello attuale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">Record</div>
+          <div class="stat-label">Livello Mari</div>
+          <div class="stat-description">Il più alto di sempre</div>
+        </div>
+      </div>
+
+      <!-- Main Changes -->
+      <h2 class="section-title">I Cambiamenti Principali</h2>
+      <p class="section-subtitle">Le trasformazioni che hanno definito l'Antropocene</p>
+      
+      <div class="grid-3">
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="calendar" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Industrializzazione</h3>
+          <p style="color: hsl(var(--muted-foreground));">La rivoluzione industriale ha segnato l'inizio di emissioni massicce di gas serra, trasformando radicalmente l'atmosfera terrestre.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="mountain" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Crescita Demografica</h3>
+          <p style="color: hsl(var(--muted-foreground));">L'esplosione della popolazione mondiale ha aumentato la pressione sulle risorse naturali e gli ecosistemi.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="thermometer-sun" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Combustibili Fossili</h3>
+          <p style="color: hsl(var(--muted-foreground));">L'uso massiccio di petrolio, carbone e gas naturale ha innalzato la CO₂ da 280 a oltre 420 ppm.</p>
+        </div>
+      </div>
+
+      <!-- Geological Traces -->
+      <h2 class="section-title" style="margin-top: 3rem;">Tracce Geologiche</h2>
+      <p class="section-subtitle">Le impronte visibili dell'attività umana sul pianeta</p>
+      
+      <div class="grid-2">
+        <div class="highlight-box muted">
+          <h3 style="font-weight: 600; margin-bottom: 1rem;">Trasformazioni Terrestri</h3>
+          <ul class="feature-list">
+            <li>Deforestazione massiccia di foreste primarie</li>
+            <li>Urbanizzazione incontrollata</li>
+            <li>Erosione costiera accelerata</li>
+            <li>Attività agricole estensive</li>
+          </ul>
+        </div>
+        <div class="highlight-box muted">
+          <h3 style="font-weight: 600; margin-bottom: 1rem;">Impatti sugli Ecosistemi</h3>
+          <ul class="feature-list">
+            <li>Inquinamento dei mari e oceani</li>
+            <li>Estinzione di innumerevoli specie</li>
+            <li>Modificazione degli equilibri ecosistemici</li>
+            <li>Alterazione dei cicli naturali</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'Antropocene segna l'epoca in cui l'uomo è diventato una forza geologica dominante</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La concentrazione di CO₂ è aumentata del 50% dal 1850 ad oggi</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Le tracce dell'attività umana saranno visibili nei sedimenti per milioni di anni</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La consapevolezza di questa epoca è il primo passo verso il cambiamento</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#home" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          Home
+        </a>
+        <a href="#crisi-climatica" class="page-nav-btn">
+          Crisi Climatica
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRISI CLIMATICA -->
+  <section id="crisi-climatica" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="thermometer" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>Crisi Climatica</h1>
+      <p>Comprendere le cause e le conseguenze del cambiamento climatico per agire con consapevolezza</p>
+    </div>
+    
+    <div class="page-container">
+      <!-- Greenhouse Effect -->
+      <h2 class="section-title">L'Effetto Serra</h2>
+      <div class="grid-2" style="align-items: center; margin-bottom: 3rem;">
+        <div>
+          <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8; margin-bottom: 1rem;">
+            Il cambiamento climatico è causato primariamente dalle <strong style="color: hsl(var(--foreground));">attività umane</strong>: l'uso di combustibili fossili, gli allevamenti intensivi e lo sfruttamento irresponsabile delle risorse naturali.
+          </p>
+          <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8;">
+            I <strong style="color: hsl(var(--foreground));">gas serra</strong> come CO₂ e metano intrappolano il calore nell'atmosfera, creando l'effetto serra che impedisce al calore di abbandonare il pianeta.
+          </p>
+        </div>
+        <div class="highlight-box muted" style="text-align: center; padding: 2rem;">
+          <div style="height: 12rem; background: linear-gradient(to bottom, hsl(204 70% 53% / 0.2), transparent, hsl(35 50% 45% / 0.2)); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; position: relative;">
+            <div style="position: absolute; top: 1rem; right: 1rem; width: 3rem; height: 3rem; background: hsl(45 90% 55%); border-radius: 50%;"></div>
+            <div style="width: 5rem; height: 5rem; background: linear-gradient(135deg, hsl(200 80% 50%), hsl(120 40% 45%)); border-radius: 50%;"></div>
+          </div>
+          <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-top: 1rem;">I gas serra intrappolano il calore, impedendogli di disperdersi nello spazio</p>
+        </div>
+      </div>
+
+      <!-- Causes -->
+      <h2 class="section-title">Le Cause</h2>
+      <p class="section-subtitle">Le principali attività umane responsabili dell'aumento dei gas serra</p>
+      
+      <div class="grid-3">
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="factory" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Combustibili Fossili</h3>
+          <p style="color: hsl(var(--muted-foreground));">Petrolio, carbone e gas naturale rilasciano enormi quantità di CO₂ nell'atmosfera quando bruciati per produrre energia.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="flame" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Allevamenti Intensivi</h3>
+          <p style="color: hsl(var(--muted-foreground));">L'industria zootecnica produce metano, un gas serra 25 volte più potente della CO₂, attraverso i processi digestivi degli animali.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="cloud" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Deforestazione</h3>
+          <p style="color: hsl(var(--muted-foreground));">La distruzione delle foreste elimina i 'polmoni del pianeta' che assorbono CO₂ e rilasciano ossigeno.</p>
+        </div>
+      </div>
+
+      <!-- Consequences -->
+      <h2 class="section-title" style="margin-top: 3rem;">Le Conseguenze</h2>
+      <p class="section-subtitle">Gli effetti devastanti e multiformi del riscaldamento globale</p>
+      
+      <div class="grid-3">
+        <div class="consequence-card critical">
+          <div class="consequence-content">
+            <div class="consequence-icon critical">
+              <i data-lucide="snowflake" style="width: 1.25rem; height: 1.25rem;"></i>
+            </div>
+            <div>
+              <h4>Scioglimento Ghiacci</h4>
+              <p>I ghiacci dell'Artico e dell'Antartico si stanno sciogliendo a ritmi senza precedenti.</p>
+            </div>
+          </div>
+        </div>
+        <div class="consequence-card critical">
+          <div class="consequence-content">
+            <div class="consequence-icon critical">
+              <i data-lucide="waves" style="width: 1.25rem; height: 1.25rem;"></i>
+            </div>
+            <div>
+              <h4>Innalzamento Mari</h4>
+              <p>Il livello dei mari sta crescendo, minacciando le comunità costiere.</p>
+            </div>
+          </div>
+        </div>
+        <div class="consequence-card high">
+          <div class="consequence-content">
+            <div class="consequence-icon high">
+              <i data-lucide="waves" style="width: 1.25rem; height: 1.25rem;"></i>
+            </div>
+            <div>
+              <h4>Acidificazione Oceani</h4>
+              <p>Gli oceani assorbono CO₂ diventando più acidi, causando la scomparsa delle barriere coralline.</p>
+            </div>
+          </div>
+        </div>
+        <div class="consequence-card high">
+          <div class="consequence-content">
+            <div class="consequence-icon high">
+              <i data-lucide="thermometer" style="width: 1.25rem; height: 1.25rem;"></i>
+            </div>
+            <div>
+              <h4>Desertificazione</h4>
+              <p>Zone precedentemente fertili si stanno trasformando in deserti.</p>
+            </div>
+          </div>
+        </div>
+        <div class="consequence-card high">
+          <div class="consequence-content">
+            <div class="consequence-icon high">
+              <i data-lucide="cloud" style="width: 1.25rem; height: 1.25rem;"></i>
+            </div>
+            <div>
+              <h4>Eventi Estremi</h4>
+              <p>Uragani, inondazioni, siccità e ondate di calore sempre più frequenti.</p>
+            </div>
+          </div>
+        </div>
+        <div class="consequence-card moderate">
+          <div class="consequence-content">
+            <div class="consequence-icon moderate">
+              <i data-lucide="cloud" style="width: 1.25rem; height: 1.25rem;"></i>
+            </div>
+            <div>
+              <h4>Alterazione Stagioni</h4>
+              <p>I cicli stagionali si stanno modificando, con fioriture anticipate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coral Reefs -->
+      <div class="highlight-box secondary" style="margin-top: 3rem;">
+        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(204 70% 53% / 0.2); border-radius: 0.5rem; color: hsl(204 70% 53%); flex-shrink: 0;">
+            <i data-lucide="waves" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h3 style="font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem;">La Scomparsa delle Barriere Coralline</h3>
+            <p style="color: hsl(var(--muted-foreground)); line-height: 1.8;">L'acidificazione delle acque oceaniche sta causando la scomparsa delle barriere coralline, ecosistemi fondamentali per la biodiversità marina. I coralli ospitano il 25% di tutte le specie marine, nonostante occupino meno dell'1% del fondale oceanico.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Il cambiamento climatico è causato principalmente dalle attività umane, in particolare l'uso di combustibili fossili</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> I gas serra (CO₂, metano) intrappolano il calore nell'atmosfera, causando il riscaldamento globale</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Le conseguenze includono scioglimento dei ghiacci, innalzamento dei mari, eventi meteorologici estremi</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'acidificazione degli oceani minaccia le barriere coralline e l'intera catena alimentare marina</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#antropocene" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          L'Antropocene
+        </a>
+        <a href="#agenda-2030" class="page-nav-btn">
+          Agenda 2030
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA 2030 -->
+  <section id="agenda-2030" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="target" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>Agenda 2030</h1>
+      <p>I 17 Obiettivi di Sviluppo Sostenibile dell'ONU per un futuro migliore</p>
+    </div>
+    
+    <div class="page-container">
+      <div style="margin-bottom: 3rem;">
+        <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8; margin-bottom: 1rem;">
+          L'<strong style="color: hsl(var(--foreground));">Agenda 2030</strong> delle Nazioni Unite presenta 17 obiettivi interconnessi per garantire un futuro sostenibile al nostro pianeta. Adottata nel 2015, rappresenta un piano d'azione globale che coinvolge tutti.
+        </p>
+        <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8;">
+          Per la <strong style="color: hsl(var(--foreground));">tutela ambientale</strong>, alcuni obiettivi sono particolarmente prioritari: la conservazione delle fonti d'acqua, l'energia pulita, l'azione per il clima, la protezione degli ecosistemi e il consumo responsabile.
+        </p>
+      </div>
+
+      <!-- SDG Overview -->
+      <h2 class="section-title" style="text-align: center;">17 Obiettivi per il Futuro</h2>
+      <p class="section-subtitle" style="text-align: center;">Una panoramica degli obiettivi di sviluppo sostenibile</p>
+      
+      <div class="sdg-grid" style="margin-bottom: 1rem;">
+        <div class="sdg-item muted">1</div>
+        <div class="sdg-item muted">2</div>
+        <div class="sdg-item muted">3</div>
+        <div class="sdg-item muted">4</div>
+        <div class="sdg-item muted">5</div>
+        <div class="sdg-item highlight">6</div>
+        <div class="sdg-item highlight">7</div>
+        <div class="sdg-item muted">8</div>
+        <div class="sdg-item muted">9</div>
+        <div class="sdg-item muted">10</div>
+        <div class="sdg-item muted">11</div>
+        <div class="sdg-item highlight">12</div>
+        <div class="sdg-item highlight">13</div>
+        <div class="sdg-item highlight">14</div>
+        <div class="sdg-item highlight">15</div>
+        <div class="sdg-item muted">16</div>
+        <div class="sdg-item muted">17</div>
+      </div>
+      <p style="text-align: center; font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 3rem;">
+        Gli obiettivi evidenziati sono particolarmente rilevanti per la tutela ambientale
+      </p>
+
+      <!-- Environmental Goals -->
+      <h2 class="section-title">Obiettivi per l'Ambiente</h2>
+      <p class="section-subtitle">Gli obiettivi chiave per la tutela del nostro pianeta</p>
+      
+      <div class="goals-grid">
+        <div class="goal-card" style="background: hsl(200 80% 50% / 0.1); border-color: hsl(200 80% 50% / 0.2);">
+          <div class="goal-header">
+            <div class="goal-number" style="color: hsl(200 80% 50%);">
+              <span>6</span>
+              <i data-lucide="droplets" style="width: 1.5rem; height: 1.5rem;"></i>
+            </div>
+            <div>
+              <h4>Acqua Pulita e Igiene</h4>
+              <p>Garantire a tutti la disponibilità e la gestione sostenibile dell'acqua.</p>
+            </div>
+          </div>
+        </div>
+        <div class="goal-card" style="background: hsl(45 90% 55% / 0.1); border-color: hsl(45 90% 55% / 0.2);">
+          <div class="goal-header">
+            <div class="goal-number" style="color: hsl(45 90% 55%);">
+              <span>7</span>
+              <i data-lucide="zap" style="width: 1.5rem; height: 1.5rem;"></i>
+            </div>
+            <div>
+              <h4>Energia Pulita e Accessibile</h4>
+              <p>Assicurare a tutti l'accesso a sistemi di energia sostenibili.</p>
+            </div>
+          </div>
+        </div>
+        <div class="goal-card" style="background: hsl(var(--primary) / 0.1); border-color: hsl(var(--primary) / 0.2);">
+          <div class="goal-header">
+            <div class="goal-number" style="color: hsl(var(--primary));">
+              <span>12</span>
+              <i data-lucide="recycle" style="width: 1.5rem; height: 1.5rem;"></i>
+            </div>
+            <div>
+              <h4>Consumo Responsabile</h4>
+              <p>Garantire modelli sostenibili di produzione e di consumo.</p>
+            </div>
+          </div>
+        </div>
+        <div class="goal-card" style="background: hsl(0 84% 60% / 0.1); border-color: hsl(0 84% 60% / 0.2);">
+          <div class="goal-header">
+            <div class="goal-number" style="color: hsl(0 84% 60%);">
+              <span>13</span>
+              <i data-lucide="target" style="width: 1.5rem; height: 1.5rem;"></i>
+            </div>
+            <div>
+              <h4>Lotta al Cambiamento Climatico</h4>
+              <p>Adottare misure urgenti per combattere il cambiamento climatico.</p>
+            </div>
+          </div>
+        </div>
+        <div class="goal-card" style="background: hsl(204 70% 53% / 0.1); border-color: hsl(204 70% 53% / 0.2);">
+          <div class="goal-header">
+            <div class="goal-number" style="color: hsl(204 70% 53%);">
+              <span>14</span>
+              <i data-lucide="fish" style="width: 1.5rem; height: 1.5rem;"></i>
+            </div>
+            <div>
+              <h4>Vita Sott'acqua</h4>
+              <p>Conservare e utilizzare in modo durevole oceani e mari.</p>
+            </div>
+          </div>
+        </div>
+        <div class="goal-card" style="background: hsl(120 40% 45% / 0.1); border-color: hsl(120 40% 45% / 0.2);">
+          <div class="goal-header">
+            <div class="goal-number" style="color: hsl(120 40% 45%);">
+              <span>15</span>
+              <i data-lucide="tree-pine" style="width: 1.5rem; height: 1.5rem;"></i>
+            </div>
+            <div>
+              <h4>Vita sulla Terra</h4>
+              <p>Proteggere e favorire un uso sostenibile dell'ecosistema terrestre.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="highlight-box muted" style="margin-top: 3rem; text-align: center; padding: 2rem;">
+        <h3 style="font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem;">Dalla Consapevolezza all'Azione</h3>
+        <p style="color: hsl(var(--muted-foreground)); max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.8;">
+          L'Agenda 2030 richiede l'impegno collettivo di tutti noi. La sfida è trasformare la consapevolezza in comportamenti concreti.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+          <span style="padding: 0.5rem 1rem; background: hsl(var(--primary) / 0.1); color: hsl(var(--primary)); border-radius: 9999px; font-size: 0.875rem; font-weight: 500;">Individui</span>
+          <span style="padding: 0.5rem 1rem; background: hsl(var(--primary) / 0.1); color: hsl(var(--primary)); border-radius: 9999px; font-size: 0.875rem; font-weight: 500;">Comunità</span>
+          <span style="padding: 0.5rem 1rem; background: hsl(var(--primary) / 0.1); color: hsl(var(--primary)); border-radius: 9999px; font-size: 0.875rem; font-weight: 500;">Governi</span>
+          <span style="padding: 0.5rem 1rem; background: hsl(var(--primary) / 0.1); color: hsl(var(--primary)); border-radius: 9999px; font-size: 0.875rem; font-weight: 500;">Organizzazioni</span>
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'Agenda 2030 presenta 17 obiettivi interconnessi per un futuro sostenibile</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Gli obiettivi ambientali prioritari riguardano acqua, energia, clima, oceani e ecosistemi</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Il raggiungimento degli obiettivi richiede l'impegno di individui, comunità, governi e organizzazioni</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La trasformazione della consapevolezza in azione è la sfida principale</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#crisi-climatica" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          Crisi Climatica
+        </a>
+        <a href="#risorse-energetiche" class="page-nav-btn">
+          Risorse Energetiche
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISORSE ENERGETICHE -->
+  <section id="risorse-energetiche" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="zap" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>Risorse Energetiche</h1>
+      <p>Confronto tra energie rinnovabili e non rinnovabili per un futuro pulito e sostenibile</p>
+    </div>
+    
+    <div class="page-container">
+      <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8; margin-bottom: 3rem;">
+        La transizione verso le <strong style="color: hsl(var(--foreground));">energie rinnovabili</strong> è imperativa per ridurre la CO₂ atmosferica e combattere il cambiamento climatico.
+      </p>
+
+      <!-- Renewable Energy -->
+      <h2 class="section-title" style="color: hsl(var(--primary));">Energie Rinnovabili</h2>
+      <p class="section-subtitle">Fonti naturali che si rigenerano continuamente e non si esauriscono</p>
+      
+      <div class="energy-grid" style="margin-bottom: 2rem;">
+        <div class="energy-card">
+          <div class="energy-icon" style="background: hsl(45 90% 55% / 0.1); color: hsl(45 90% 55%);">
+            <i data-lucide="sun" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h4>Energia Solare</h4>
+            <p>Pannelli solari che convertono la radiazione solare in energia termica ed elettrica.</p>
+          </div>
+        </div>
+        <div class="energy-card">
+          <div class="energy-icon" style="background: hsl(204 70% 53% / 0.1); color: hsl(204 70% 53%);">
+            <i data-lucide="wind" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h4>Energia Eolica</h4>
+            <p>Turbine che catturano la forza del vento per generare elettricità pulita.</p>
+          </div>
+        </div>
+        <div class="energy-card">
+          <div class="energy-icon" style="background: hsl(200 80% 50% / 0.1); color: hsl(200 80% 50%);">
+            <i data-lucide="droplets" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h4>Energia Idroelettrica</h4>
+            <p>La potenza dell'acqua in movimento converte energia cinetica in elettricità.</p>
+          </div>
+        </div>
+        <div class="energy-card">
+          <div class="energy-icon" style="background: hsl(0 84% 60% / 0.1); color: hsl(0 84% 60%);">
+            <i data-lucide="flame" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h4>Energia Geotermica</h4>
+            <p>Calore interno terrestre utilizzato per riscaldamento e produzione elettrica.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advantages -->
+      <div class="highlight-box primary" style="margin-bottom: 1rem;">
+        <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+          <i data-lucide="check" style="width: 1.25rem; height: 1.25rem; color: hsl(var(--primary));"></i>
+          Vantaggi delle Energie Rinnovabili
+        </h3>
+        <div class="grid-2">
+          <ul class="feature-list">
+            <li>Non producono emissioni di CO₂ né gas serra</li>
+            <li>Sono fonti illimitate e naturali</li>
+            <li>Più sicure per la salute umana</li>
+          </ul>
+          <ul class="feature-list">
+            <li>Non generano residui tossici</li>
+            <li>Riducono la dipendenza da combustibili fossili</li>
+            <li>Creano occupazione nel settore green</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Disadvantages -->
+      <div class="highlight-box muted" style="margin-bottom: 3rem;">
+        <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+          <i data-lucide="x" style="width: 1.25rem; height: 1.25rem; color: hsl(var(--muted-foreground));"></i>
+          Possibili Svantaggi
+        </h3>
+        <div class="grid-2">
+          <ul class="feature-list">
+            <li>Dipendenza dalle condizioni meteorologiche</li>
+            <li>Costi iniziali di installazione elevati</li>
+          </ul>
+          <ul class="feature-list">
+            <li>Necessità di grandi spazi per impianti</li>
+            <li>Variabilità geografica delle risorse</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Non-Renewable -->
+      <h2 class="section-title" style="color: hsl(var(--muted-foreground));">Energie Non Rinnovabili</h2>
+      <p class="section-subtitle">Fonti limitate che non si rigenerano naturalmente e producono inquinamento</p>
+      
+      <div style="overflow-x: auto; margin-bottom: 2rem;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Fonte</th>
+              <th>Emissioni CO₂</th>
+              <th>Riserve Stimate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Petrolio</td>
+              <td style="color: hsl(0 84% 60% / 0.8);">Alta</td>
+              <td style="color: hsl(var(--muted-foreground));">50-100 anni</td>
+            </tr>
+            <tr>
+              <td>Carbone</td>
+              <td style="color: hsl(0 84% 60%);">Molto alta</td>
+              <td style="color: hsl(var(--muted-foreground));">100+ anni</td>
+            </tr>
+            <tr>
+              <td>Gas Naturale</td>
+              <td style="color: hsl(45 90% 55%);">Media</td>
+              <td style="color: hsl(var(--muted-foreground));">50-100 anni</td>
+            </tr>
+            <tr>
+              <td>Nucleare</td>
+              <td style="color: hsl(var(--muted-foreground));">Bassa*</td>
+              <td style="color: hsl(var(--muted-foreground));">80+ anni</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 2rem;">* Il nucleare produce basse emissioni dirette ma genera rifiuti radioattivi pericolosi</p>
+
+      <!-- Problems -->
+      <div class="highlight-box destructive" style="margin-bottom: 3rem;">
+        <h3 style="color: hsl(0 84% 60%); margin-bottom: 1rem;">Problemi delle Energie Non Rinnovabili</h3>
+        <ul class="feature-list">
+          <li>Emissioni massicce di gas inquinanti e serra</li>
+          <li>Risorse finite destinate ad esaurirsi</li>
+          <li>Rifiuti radioattivi pericolosi (nucleare)</li>
+          <li>Rischio di disastri ambientali</li>
+          <li>Contributo diretto al riscaldamento globale</li>
+        </ul>
+      </div>
+
+      <!-- Personal Efficiency -->
+      <div class="highlight-box primary" style="padding: 2rem;">
+        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">💡 Efficienza Energetica Personale</h3>
+        <p style="color: hsl(var(--muted-foreground)); margin-bottom: 1.5rem;">
+          Ognuno di noi può contribuire alla transizione energetica con le proprie scelte quotidiane.
+        </p>
+        <div class="grid-3">
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <i data-lucide="check" style="width: 1rem; height: 1rem; color: hsl(var(--primary));"></i>
+            Elettrodomestici classe A+++
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <i data-lucide="check" style="width: 1rem; height: 1rem; color: hsl(var(--primary));"></i>
+            Spegnere le luci non necessarie
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <i data-lucide="check" style="width: 1rem; height: 1rem; color: hsl(var(--primary));"></i>
+            Trasporti pubblici o bici
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <i data-lucide="check" style="width: 1rem; height: 1rem; color: hsl(var(--primary));"></i>
+            Pannelli solari domestici
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <i data-lucide="check" style="width: 1rem; height: 1rem; color: hsl(var(--primary));"></i>
+            Isolare termicamente la casa
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+            <i data-lucide="check" style="width: 1rem; height: 1rem; color: hsl(var(--primary));"></i>
+            Regolare il termostato
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Le energie rinnovabili (solare, eolica, idroelettrica, geotermica) sono illimitate e non inquinano</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Le energie non rinnovabili (petrolio, carbone, gas, nucleare) sono limitate e producono emissioni nocive</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La transizione energetica è essenziale per combattere il cambiamento climatico</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'efficienza energetica personale contribuisce alla riduzione dell'impronta ecologica</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#agenda-2030" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          Agenda 2030
+        </a>
+        <a href="#acqua" class="page-nav-btn">
+          L'Acqua
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACQUA -->
+  <section id="acqua" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="droplets" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>L'Acqua</h1>
+      <p>Gestione sostenibile della risorsa più preziosa del pianeta</p>
+    </div>
+    
+    <div class="page-container">
+      <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8; margin-bottom: 3rem;">
+        L'<strong style="color: hsl(var(--foreground));">acqua</strong> è una risorsa preziosa ma sotto pressione estrema. Non viene consumata solo per bere, ma massicciamente nell'industria, agricoltura e allevamento attraverso <em>consumi "idrici virtuali"</em> incorporati nei prodotti.
+      </p>
+
+      <!-- Stats -->
+      <h2 class="section-title">Consumo Globale</h2>
+      <p class="section-subtitle">I numeri drammatici del consumo idrico</p>
+      
+      <div class="grid-4" style="margin-bottom: 3rem;">
+        <div class="stat-card">
+          <div class="stat-value">215</div>
+          <div class="stat-label">Litri/giorno</div>
+          <div class="stat-description">Consumo pro capite italiano</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">2.500</div>
+          <div class="stat-label">Miliardi di litri</div>
+          <div class="stat-description">Consumo annuo nazionale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">70%</div>
+          <div class="stat-label">Agricoltura</div>
+          <div class="stat-description">Del consumo idrico globale</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">2,2</div>
+          <div class="stat-label">Miliardi</div>
+          <div class="stat-description">Persone senza acqua pulita</div>
+        </div>
+      </div>
+
+      <!-- Virtual Water -->
+      <h2 class="section-title">Acqua Virtuale</h2>
+      <p class="section-subtitle">Quanta acqua serve per produrre ciò che consumiamo?</p>
+      
+      <div class="water-grid" style="margin-bottom: 3rem;">
+        <div class="water-card">
+          <div class="emoji">🥩</div>
+          <div class="amount">15.000 L</div>
+          <div class="product">1 kg manzo</div>
+        </div>
+        <div class="water-card">
+          <div class="emoji">🧀</div>
+          <div class="amount">5.000 L</div>
+          <div class="product">1 kg formaggio</div>
+        </div>
+        <div class="water-card">
+          <div class="emoji">🍚</div>
+          <div class="amount">2.500 L</div>
+          <div class="product">1 kg riso</div>
+        </div>
+        <div class="water-card">
+          <div class="emoji">🍞</div>
+          <div class="amount">1.600 L</div>
+          <div class="product">1 kg pane</div>
+        </div>
+        <div class="water-card">
+          <div class="emoji">🥚</div>
+          <div class="amount">200 L</div>
+          <div class="product">1 uovo</div>
+        </div>
+        <div class="water-card">
+          <div class="emoji">🍎</div>
+          <div class="amount">70 L</div>
+          <div class="product">1 mela</div>
+        </div>
+      </div>
+
+      <!-- Problems -->
+      <h2 class="section-title">Le Problematiche</h2>
+      <p class="section-subtitle">Le sfide che minacciano le risorse idriche globali</p>
+      
+      <div class="grid-3" style="margin-bottom: 3rem;">
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(0 84% 60% / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(0 84% 60%);">
+            <i data-lucide="alert-triangle" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Scarsità</h3>
+          <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">Inquinamento, cambiamento climatico e consumo eccessivo stanno riducendo la disponibilità di acqua potabile.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--muted-foreground) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--muted-foreground));">
+            <i data-lucide="factory" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Contaminazione</h3>
+          <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">L'inquinamento industriale e agricolo sta contaminando fiumi, laghi e falde acquifere.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(45 90% 55% / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(45 90% 55%);">
+            <i data-lucide="cloud-rain" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Cambiamento Climatico</h3>
+          <p style="color: hsl(var(--muted-foreground)); font-size: 0.875rem;">Siccità più frequenti e intense, insieme a precipitazioni irregolari.</p>
+        </div>
+      </div>
+
+      <!-- Solutions -->
+      <h2 class="section-title">Soluzioni Individuali</h2>
+      <p class="section-subtitle">Come ridurre il tuo consumo idrico quotidiano</p>
+      
+      <div class="tips-grid" style="margin-bottom: 3rem;">
+        <div class="tip-item">
+          <div class="tip-text">
+            <div class="tip-icon"><i data-lucide="shower-head" style="width: 1rem; height: 1rem;"></i></div>
+            <span>Chiudi il rubinetto mentre ti lavi i denti</span>
+          </div>
+          <span class="saving">6 litri/minuto</span>
+        </div>
+        <div class="tip-item">
+          <div class="tip-text">
+            <div class="tip-icon"><i data-lucide="shower-head" style="width: 1rem; height: 1rem;"></i></div>
+            <span>Preferisci la doccia alla vasca da bagno</span>
+          </div>
+          <span class="saving">fino a 100 litri</span>
+        </div>
+        <div class="tip-item">
+          <div class="tip-text">
+            <div class="tip-icon"><i data-lucide="shower-head" style="width: 1rem; height: 1rem;"></i></div>
+            <span>Ripara rubinetti che gocciolano</span>
+          </div>
+          <span class="saving">20 litri/giorno</span>
+        </div>
+        <div class="tip-item">
+          <div class="tip-text">
+            <div class="tip-icon"><i data-lucide="shower-head" style="width: 1rem; height: 1rem;"></i></div>
+            <span>Usa la lavatrice a pieno carico</span>
+          </div>
+          <span class="saving">50 litri/lavaggio</span>
+        </div>
+        <div class="tip-item">
+          <div class="tip-text">
+            <div class="tip-icon"><i data-lucide="shower-head" style="width: 1rem; height: 1rem;"></i></div>
+            <span>Raccogli l'acqua piovana per le piante</span>
+          </div>
+          <span class="saving">variabile</span>
+        </div>
+        <div class="tip-item">
+          <div class="tip-text">
+            <div class="tip-icon"><i data-lucide="shower-head" style="width: 1rem; height: 1rem;"></i></div>
+            <span>Installa riduttori di flusso</span>
+          </div>
+          <span class="saving">30% consumo</span>
+        </div>
+      </div>
+
+      <!-- Sustainable Management -->
+      <div class="highlight-box primary" style="margin-bottom: 3rem;">
+        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; color: hsl(var(--primary)); flex-shrink: 0;">
+            <i data-lucide="leaf" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h3 style="font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem;">Gestione Sostenibile</h3>
+            <p style="color: hsl(var(--muted-foreground)); line-height: 1.8;">La gestione sostenibile delle risorse idriche richiede impegno collettivo per assicurare disponibilità per le generazioni future. Oltre alle azioni individuali, sono necessarie politiche pubbliche per la tutela delle falde acquifere.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Il consumo medio italiano è di 215 litri pro capite al giorno</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'acqua virtuale nei prodotti moltiplica enormemente il nostro consumo reale</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Scarsità, contaminazione e cambiamento climatico minacciano le risorse idriche</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Piccole azioni quotidiane possono fare una grande differenza nel risparmio idrico</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#risorse-energetiche" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          Risorse Energetiche
+        </a>
+        <a href="#rifiuti" class="page-nav-btn">
+          I Rifiuti
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIFIUTI -->
+  <section id="rifiuti" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="trash-2" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>I Rifiuti</h1>
+      <p>Il problema dello smaltimento e l'impatto devastante della plastica sugli ecosistemi</p>
+    </div>
+    
+    <div class="page-container">
+      <p style="font-size: 1.125rem; color: hsl(var(--muted-foreground)); line-height: 1.8; margin-bottom: 3rem;">
+        La gestione dei rifiuti rappresenta una <strong style="color: hsl(var(--foreground));">crisi ambientale complessa</strong> che richiede soluzioni innovative e un cambiamento radicale nelle nostre abitudini di consumo.
+      </p>
+
+      <!-- Disposal Methods -->
+      <h2 class="section-title">Metodologie di Smaltimento</h2>
+      <p class="section-subtitle">Le diverse opzioni per la gestione dei rifiuti e il loro impatto ambientale</p>
+      
+      <div class="grid-3" style="margin-bottom: 3rem;">
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(0 84% 60% / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(0 84% 60%);">
+            <i data-lucide="alert-triangle" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Discariche</h3>
+          <p style="color: hsl(var(--muted-foreground));">Contaminano terreni e falde acquifere per decenni. I rifiuti rilasciano gas serra e sostanze tossiche.</p>
+        </div>
+        <div class="info-card">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--muted-foreground) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--muted-foreground));">
+            <i data-lucide="factory" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Incenerimento</h3>
+          <p style="color: hsl(var(--muted-foreground));">L'incenerimento tradizionale causa significativi danni ambientali e sanitari.</p>
+        </div>
+        <div class="info-card" style="border-color: hsl(var(--primary) / 0.3);">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; margin-bottom: 1rem; color: hsl(var(--primary));">
+            <i data-lucide="recycle" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <h3 style="font-weight: 600; margin-bottom: 0.5rem;">Termovalorizzatori</h3>
+          <p style="color: hsl(var(--muted-foreground));">Bruciano rifiuti in modo controllato per generare energia. Benefici se dotati di filtri avanzati.</p>
+        </div>
+      </div>
+
+      <!-- Plastic Impact -->
+      <h2 class="section-title">L'Impatto della Plastica</h2>
+      <p class="section-subtitle">Un materiale che sta soffocando i nostri oceani e la vita marina</p>
+      
+      <div class="grid-2" style="margin-bottom: 3rem;">
+        <div class="highlight-box destructive">
+          <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <i data-lucide="alert-triangle" style="width: 1.25rem; height: 1.25rem; color: hsl(0 84% 60%);"></i>
+            Impatto Devastante
+          </h3>
+          <ul class="feature-list">
+            <li>Impiega centinaia di anni per degradarsi</li>
+            <li>Intrapola fauna marina: pesci, tartarughe, uccelli</li>
+            <li>Crea isole di spazzatura oceaniche</li>
+            <li>Si frammenta in microplastiche nella catena alimentare</li>
+            <li>Rilascia sostanze tossiche durante la decomposizione</li>
+          </ul>
+        </div>
+        <div class="highlight-box secondary">
+          <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <i data-lucide="fish" style="width: 1.25rem; height: 1.25rem; color: hsl(204 70% 53%);"></i>
+            Pacific Trash Vortex
+          </h3>
+          <p style="color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">Un'isola di spazzatura grande tre volte la Francia galleggia nell'Oceano Pacifico.</p>
+          <div class="grid-2">
+            <div style="text-align: center; padding: 1rem; background: hsl(var(--background)); border-radius: 0.5rem;">
+              <div style="font-size: 1.5rem; font-weight: 700; color: hsl(204 70% 53%); font-family: var(--font-heading);">1.6M</div>
+              <div style="font-size: 0.75rem; color: hsl(var(--muted-foreground));">km² di superficie</div>
+            </div>
+            <div style="text-align: center; padding: 1rem; background: hsl(var(--background)); border-radius: 0.5rem;">
+              <div style="font-size: 1.5rem; font-weight: 700; color: hsl(204 70% 53%); font-family: var(--font-heading);">80.000</div>
+              <div style="font-size: 0.75rem; color: hsl(var(--muted-foreground));">tonnellate di plastica</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recycling -->
+      <h2 class="section-title">Il Potere del Riciclo</h2>
+      <p class="section-subtitle">Come i materiali possono trasformarsi in nuovi prodotti</p>
+      
+      <div class="recycle-grid" style="margin-bottom: 3rem;">
+        <div class="recycle-card">
+          <div class="emoji">📦</div>
+          <h4>Carta</h4>
+          <p>Libri, quaderni, scatole</p>
+        </div>
+        <div class="recycle-card">
+          <div class="emoji">👟</div>
+          <h4>Plastica</h4>
+          <p>Felpe, tute, scarpe</p>
+        </div>
+        <div class="recycle-card">
+          <div class="emoji">🍾</div>
+          <h4>Vetro</h4>
+          <p>Nuove bottiglie</p>
+        </div>
+        <div class="recycle-card">
+          <div class="emoji">🌱</div>
+          <h4>Organico</h4>
+          <p>Fertilizzante biologico</p>
+        </div>
+      </div>
+
+      <!-- E-Waste -->
+      <div class="highlight-box muted" style="margin-bottom: 3rem;">
+        <h3 style="font-weight: 600; margin-bottom: 0.75rem;">🖥️ Inquinamento Digitale</h3>
+        <p style="color: hsl(var(--muted-foreground));">I rifiuti tecnologici (RAEE) rappresentano una problematica emergente. Nel mondo si producono oltre 50 milioni di tonnellate di e-waste all'anno, ma solo il 20% viene riciclato correttamente.</p>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Le discariche contaminano terreni e acque per decenni</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La plastica impiega centinaia di anni per degradarsi e sta soffocando gli oceani</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> Il riciclo di qualità trasforma i rifiuti in nuove risorse preziose</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> I rifiuti elettronici sono una problematica in crescita che richiede attenzione</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#acqua" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          L'Acqua
+        </a>
+        <a href="#economia-circolare" class="page-nav-btn">
+          Economia Circolare
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECONOMIA CIRCOLARE -->
+  <section id="economia-circolare" class="content-section">
+    <div class="page-header">
+      <div class="page-header-icon">
+        <i data-lucide="refresh-ccw" style="width: 2rem; height: 2rem;"></i>
+      </div>
+      <h1>Economia Circolare</h1>
+      <p>Dal modello lineare al circolare: ripensare produzione e consumo per un futuro sostenibile</p>
+    </div>
+    
+    <div class="page-container">
+      <!-- Linear vs Circular -->
+      <h2 class="section-title">Lineare vs Circolare</h2>
+      <p class="section-subtitle">Due modelli economici a confronto</p>
+      
+      <div class="comparison-grid" style="margin-bottom: 3rem;">
+        <div class="comparison-box linear">
+          <h3 style="font-size: 1.125rem; font-weight: 600;">Economia Lineare (Insostenibile)</h3>
+          <div class="flow-steps">
+            <span class="flow-step">Estrazione</span>
+            <i data-lucide="arrow-right" style="width: 1rem; height: 1rem; color: hsl(0 84% 60%);"></i>
+            <span class="flow-step">Produzione</span>
+            <i data-lucide="arrow-right" style="width: 1rem; height: 1rem; color: hsl(0 84% 60%);"></i>
+            <span class="flow-step">Consumo</span>
+            <i data-lucide="arrow-right" style="width: 1rem; height: 1rem; color: hsl(0 84% 60%);"></i>
+            <span class="flow-step">Discarica</span>
+          </div>
+          <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">Modello "prendi-usa-getta" che esaurisce le risorse naturali e genera enormi quantità di rifiuti.</p>
+        </div>
+        <div class="comparison-box circular">
+          <h3 style="font-size: 1.125rem; font-weight: 600;">Economia Circolare (Sostenibile)</h3>
+          <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+            <div style="position: relative; width: 8rem; height: 8rem;">
+              <i data-lucide="refresh-ccw" style="width: 100%; height: 100%; color: hsl(var(--primary) / 0.2);"></i>
+              <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 0.75rem; text-align: center; color: hsl(var(--primary)); font-weight: 500;">Riuso<br>Riciclo<br>Rigenerazione</span>
+              </div>
+            </div>
+          </div>
+          <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">I prodotti vengono progettati per durare, riparati, riutilizzati e infine riciclati.</p>
+        </div>
+      </div>
+
+      <!-- Circular Strategies -->
+      <h2 class="section-title">Strategie Circolari</h2>
+      <p class="section-subtitle">Le pratiche che rendono possibile l'economia circolare</p>
+      
+      <div class="strategies-grid" style="margin-bottom: 3rem;">
+        <div class="strategy-card">
+          <div class="strategy-icon"><i data-lucide="hammer" style="width: 1.25rem; height: 1.25rem;"></i></div>
+          <div>
+            <h4>Progettazione</h4>
+            <p>Attenzione al ciclo di vita intero del prodotto</p>
+          </div>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon"><i data-lucide="share-2" style="width: 1.25rem; height: 1.25rem;"></i></div>
+          <div>
+            <h4>Condivisione</h4>
+            <p>Prestito e sharing di oggetti tra utenti</p>
+          </div>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon"><i data-lucide="hammer" style="width: 1.25rem; height: 1.25rem;"></i></div>
+          <div>
+            <h4>Riparazione</h4>
+            <p>Ricondizionamento anziché sostituzione</p>
+          </div>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon"><i data-lucide="trash-2" style="width: 1.25rem; height: 1.25rem;"></i></div>
+          <div>
+            <h4>Raccolta Differenziata</h4>
+            <p>Separazione accurata dei materiali</p>
+          </div>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon"><i data-lucide="refresh-ccw" style="width: 1.25rem; height: 1.25rem;"></i></div>
+          <div>
+            <h4>Upcycling</h4>
+            <p>Creazione di prodotti con valore aggiunto</p>
+          </div>
+        </div>
+        <div class="strategy-card">
+          <div class="strategy-icon"><i data-lucide="leaf" style="width: 1.25rem; height: 1.25rem;"></i></div>
+          <div>
+            <h4>Compostaggio</h4>
+            <p>Trasformazione organico in fertilizzante</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Waste Hierarchy -->
+      <h2 class="section-title">Gerarchia dei Rifiuti</h2>
+      <p class="section-subtitle">I cinque livelli in ordine di sostenibilità</p>
+      
+      <div class="hierarchy" style="margin-bottom: 1rem;">
+        <div class="hierarchy-level" style="background: hsl(var(--primary)); width: 100%;">
+          <span>Prevenzione</span>
+          <span>Massimo impatto</span>
+        </div>
+        <div class="hierarchy-level" style="background: hsl(var(--primary) / 0.8); width: 90%; margin-left: 5%;">
+          <span>Riuso e Riparazione</span>
+          <span>Alto impatto</span>
+        </div>
+        <div class="hierarchy-level" style="background: hsl(var(--primary) / 0.6); width: 80%; margin-left: 10%;">
+          <span>Riciclo</span>
+          <span>250 posti/100kt</span>
+        </div>
+        <div class="hierarchy-level" style="background: hsl(var(--muted-foreground) / 0.6); width: 70%; margin-left: 15%;">
+          <span>Incenerimento</span>
+          <span>40 posti/100kt</span>
+        </div>
+        <div class="hierarchy-level" style="background: hsl(var(--muted-foreground) / 0.4); color: hsl(var(--foreground)); width: 60%; margin-left: 20%;">
+          <span>Discarica</span>
+          <span>16 posti/100kt</span>
+        </div>
+      </div>
+      <p style="text-align: center; font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-bottom: 3rem;">
+        La prevenzione è sempre la scelta migliore: ridurre i rifiuti alla fonte ha il massimo impatto positivo
+      </p>
+
+      <!-- Job Creation -->
+      <div class="highlight-box primary" style="padding: 2rem; margin-bottom: 3rem;">
+        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; color: hsl(var(--primary)); flex-shrink: 0;">
+            <i data-lucide="users" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div style="flex: 1;">
+            <h3 style="font-weight: 600; font-size: 1.25rem; margin-bottom: 0.5rem;">Impatto Occupazionale</h3>
+            <p style="color: hsl(var(--muted-foreground)); margin-bottom: 1rem;">L'economia circolare non è solo sostenibile, ma crea più posti di lavoro:</p>
+            <div class="job-stats">
+              <div class="job-stat">
+                <div class="number" style="color: hsl(var(--muted-foreground));">16</div>
+                <div class="label">posti/discarica</div>
+              </div>
+              <div class="job-stat">
+                <div class="number" style="color: hsl(45 90% 55%);">40</div>
+                <div class="label">posti/incenerimento</div>
+              </div>
+              <div class="job-stat">
+                <div class="number" style="color: hsl(var(--primary));">250</div>
+                <div class="label">posti/riciclo</div>
+              </div>
+            </div>
+            <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground)); margin-top: 1rem;">Per ogni 100.000 tonnellate di rifiuti gestite</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Environmental Benefits -->
+      <div class="highlight-box primary" style="margin-bottom: 3rem;">
+        <div style="display: flex; align-items: flex-start; gap: 1rem;">
+          <div class="icon-box" style="width: 3rem; height: 3rem; background: hsl(var(--primary) / 0.1); border-radius: 0.5rem; color: hsl(var(--primary)); flex-shrink: 0;">
+            <i data-lucide="leaf" style="width: 1.5rem; height: 1.5rem;"></i>
+          </div>
+          <div>
+            <h3 style="font-weight: 600; font-size: 1.125rem; margin-bottom: 0.5rem;">Esempio: La Carta Riciclata</h3>
+            <p style="color: hsl(var(--muted-foreground)); line-height: 1.8;">La produzione di carta riciclata <strong style="color: hsl(var(--foreground));">elimina la necessità di abbattere alberi</strong> e riduce il consumo di acqua ed energia elettrica in modo sostanziale. Un processo virtuoso che trasforma il concetto di rifiuto in "materia prima secondaria".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Takeaways -->
+      <div class="takeaways">
+        <h3>
+          <i data-lucide="lightbulb" style="width: 1.25rem; height: 1.25rem;"></i>
+          Punti Chiave
+        </h3>
+        <ul>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'economia lineare (prendi-usa-getta) è insostenibile e deve essere superata</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> L'economia circolare ripensa produzione e consumo per eliminare gli sprechi</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La gerarchia dei rifiuti privilegia prevenzione, riuso e riciclo su incenerimento e discarica</li>
+          <li><i data-lucide="check" class="check-icon" style="width: 1rem; height: 1rem;"></i> La transizione circolare crea più occupazione rispetto al modello lineare</li>
+        </ul>
+      </div>
+
+      <div class="page-nav">
+        <a href="#rifiuti" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          I Rifiuti
+        </a>
+        <a href="#crediti" class="page-nav-btn">
+          Crediti
+          <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDITI -->
+  <section id="crediti" class="credits-section">
+    <div class="credits-content container">
+      <div class="credits-logo">
+        <i data-lucide="leaf" style="width: 2.5rem; height: 2.5rem;"></i>
+      </div>
+      
+      <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">Realizzato da</h1>
+      
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-icon"><i data-lucide="users" style="width: 1.5rem; height: 1.5rem;"></i></div>
+          <h3>Ares Spina</h3>
+          <p>Sviluppatore & Ricercatore</p>
+        </div>
+        <div class="team-card">
+          <div class="team-icon"><i data-lucide="users" style="width: 1.5rem; height: 1.5rem;"></i></div>
+          <h3>Christian Colatruglio</h3>
+          <p>Sviluppatore & Ricercatore</p>
+        </div>
+        <div class="team-card">
+          <div class="team-icon"><i data-lucide="users" style="width: 1.5rem; height: 1.5rem;"></i></div>
+          <h3>Andrea Cervellino</h3>
+          <p>Sviluppatore & Ricercatore</p>
+        </div>
+        <div class="team-card">
+          <div class="team-icon"><i data-lucide="users" style="width: 1.5rem; height: 1.5rem;"></i></div>
+          <h3>Davide Della Ventura</h3>
+          <p>Sviluppatore & Ricercatore</p>
+        </div>
+      </div>
+      
+      <div class="project-info">
+        <div class="project-meta">
+          <span><i data-lucide="graduation-cap" style="width: 1.25rem; height: 1.25rem;"></i> Educazione Civica</span>
+          <span>Classi Quinte</span>
+          <span><i data-lucide="calendar" style="width: 1.25rem; height: 1.25rem;"></i> A.S. 2025-2026</span>
+        </div>
+        <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">La Tutela Ambientale</h2>
+        <p style="font-size: 0.875rem; color: hsl(var(--muted-foreground));">Dicembre 2025</p>
+      </div>
+      
+      <p style="color: hsl(var(--muted-foreground)); max-width: 600px; margin-top: 2rem; line-height: 1.8;">
+        Questo sito web è stato sviluppato come parte del percorso educativo di Educazione Civica per sensibilizzare sulla tutela ambientale, lo sviluppo sostenibile e la responsabilità individuale verso il pianeta.
+      </p>
+      
+      <div class="page-nav" style="justify-content: center; margin-top: 2rem;">
+        <a href="#economia-circolare" class="page-nav-btn">
+          <i data-lucide="arrow-left" style="width: 1rem; height: 1rem;"></i>
+          Economia Circolare
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content container">
+      <div class="footer-brand">
+        <div class="footer-brand-icon">
+          <i data-lucide="leaf" style="width: 1.5rem; height: 1.5rem;"></i>
+        </div>
+        <span>La Tutela Ambientale</span>
+      </div>
+      <p class="footer-text">
+        Educazione Civica • Classi Quinte • A.S. 2025-2026
+      </p>
+      <p class="footer-text" style="opacity: 0.7;">
+        © 2025 Progetto realizzato per scopi educativi
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile navigation toggle
+    function toggleNav() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('active');
+    }
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Close mobile nav on link click
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const navLinksContainer = document.getElementById('navLinks');
+        navLinksContainer.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
